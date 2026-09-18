@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="رویا بیوتی - مجله تخصصی زیبایی و آرایش">
+    <title>رویا بیوتی | مجله زیبایی</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+    
+        /* ---- کلی ---- */
+        #readingBar{position:fixed;top:0;right:0;height:4px;width:0;background:linear-gradient(to left,var(--primary),var(--accent));z-index:9999;}
+        #btnTop{display:none;position:fixed;bottom:28px;left:28px;background:linear-gradient(135deg,var(--primary),var(--primary-mid));color:white;border:none;border-radius:50%;width:48px;height:48px;cursor:pointer;box-shadow:0 4px 16px rgba(107,30,60,.35);z-index:999;align-items:center;justify-content:center;}
+        #btnTop:hover{transform:scale(1.1);}
+
+        /* ---- تیپ روز ---- */
+        .tip-bar{background:linear-gradient(135deg,var(--primary),var(--primary-mid));color:white;text-align:center;padding:10px 20px;font-size:13.5px;font-weight:500;}
+        .tip-bar b{opacity:.7;margin-left:6px;font-size:12px;}
+
+        /* ---- اسلایدشو ---- */
+        .slideshow-wrap{position:relative;overflow:hidden;background:linear-gradient(135deg,#F5EBF0,#FBF0F5);}
+        .hero-slide{display:none;flex-direction:row;align-items:center;gap:0;min-height:360px;}
+        .hero-slide.slide-active{display:flex;}
+        .slide-img-col{width:45%;flex-shrink:0;overflow:hidden;}
+        .slide-img-col img{width:100%;height:360px;object-fit:cover;display:block;}
+        .slide-text-col{flex:1;padding:40px 48px;}
+        .slide-text-col .cat-tag{display:inline-flex;align-items:center;gap:6px;background:var(--primary);color:white;font-size:11px;font-weight:700;padding:3px 14px;border-radius:20px;margin-bottom:14px;}
+        .slide-text-col .cat-tag svg{width:11px;height:11px;}
+        .slide-text-col h2{font-size:28px;font-weight:800;color:var(--dark);margin-bottom:12px;line-height:1.4;}
+        .slide-text-col p{font-size:14.5px;color:var(--text-mid);line-height:1.8;margin-bottom:22px;}
+        .slide-nav-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.85);border:1px solid var(--border);color:var(--primary);border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:10;transition:background .2s;}
+        .slide-nav-btn:hover{background:white;box-shadow:0 4px 16px rgba(107,30,60,.2);}
+        .slide-nav-btn.left{left:14px;}
+        .slide-nav-btn.right{right:14px;}
+        .slide-dots{text-align:center;padding:12px 0;background:linear-gradient(135deg,#F5EBF0,#FBF0F5);}
+        .slide-dot{display:inline-block;width:9px;height:9px;background:rgba(107,30,60,.25);border-radius:50%;margin:0 4px;cursor:pointer;transition:background .3s,transform .3s;}
+        .slide-dot.dot-active{background:var(--primary);transform:scale(1.3);}
+
+        /* ---- آمار ---- */
+        .stats-bar{background:var(--dark);color:white;display:flex;justify-content:center;flex-wrap:wrap;}
+        .stat-item{text-align:center;padding:24px 52px;border-left:1px solid rgba(255,255,255,.1);}
+        .stat-item:last-child{border-left:none;}
+        .stat-num{font-size:36px;font-weight:800;color:var(--accent-light);display:block;}
+        .stat-label{font-size:12.5px;color:#A080A0;margin-top:4px;}
+
+        /* ---- مقاله ویژه ---- */
+        .featured-card{background:var(--bg-card);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-md);border:1px solid var(--border-light);display:flex;align-items:stretch;}
+        .featured-img-col{width:360px;flex-shrink:0;overflow:hidden;}
+        .featured-img-col img{width:100%;height:100%;object-fit:cover;display:block;}
+        .featured-body{padding:36px;flex:1;}
+        .featured-badge{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,var(--primary),var(--primary-mid));color:white;font-size:11px;padding:4px 14px;border-radius:20px;margin-bottom:14px;font-weight:700;}
+        .featured-badge svg{width:11px;height:11px;}
+        .featured-body h2{font-size:24px;font-weight:800;color:var(--dark);margin-bottom:14px;line-height:1.45;}
+        .featured-body p{font-size:14.5px;color:var(--text-mid);line-height:1.85;margin-bottom:18px;text-align:justify;}
+        .featured-meta{font-size:12px;color:var(--text-light);display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin-bottom:20px;}
+        .featured-meta span{display:flex;align-items:center;gap:4px;}
+        .featured-meta svg{width:12px;height:12px;}
+
+        /* ---- دسته‌بندی ---- */
+        .cat-grid{display:flex;flex-wrap:wrap;gap:20px;justify-content:center;}
+        .cat-card{text-decoration:none;background:var(--bg-card);border-radius:var(--radius-lg);overflow:hidden;width:220px;box-shadow:var(--shadow-sm);border:1px solid var(--border-light);transition:transform .25s,box-shadow .25s;}
+        .cat-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);}
+        .cat-card-img{height:140px;overflow:hidden;}
+        .cat-card-img img{width:100%;height:100%;object-fit:cover;display:block;}
+        .cat-card-body{padding:16px;text-align:center;}
+        .cat-card-body h3{font-size:15px;font-weight:700;color:var(--dark);margin-bottom:4px;}
+        .cat-card-body span{font-size:12px;color:var(--text-light);}
+
+        /* ---- مقالات کوچک ---- */
+        .mini-grid{display:flex;flex-wrap:wrap;gap:18px;justify-content:center;}
+        .mini-card{background:var(--bg-card);border-radius:var(--radius);box-shadow:var(--shadow-sm);border:1px solid var(--border-light);width:238px;overflow:hidden;transition:transform .22s,box-shadow .22s;}
+        .mini-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);}
+        .mini-card img{width:100%;height:130px;object-fit:cover;display:block;}
+        .mini-card-body{padding:14px;}
+        .mini-card-body h4{font-size:13px;font-weight:700;color:var(--dark);margin-bottom:8px;line-height:1.5;}
+        .mini-card-body .mini-meta{font-size:11px;color:var(--text-light);margin-bottom:9px;display:flex;align-items:center;gap:8px;}
+        .mini-card-body .mini-meta svg{width:11px;height:11px;}
+        .mini-card-body a{font-size:12px;color:var(--primary);text-decoration:none;font-weight:600;display:flex;align-items:center;gap:4px;}
+        .mini-card-body a svg{width:12px;height:12px;}
+
+        /* ---- نقل قول ---- */
+        .quote-sect{background:linear-gradient(135deg,var(--border-light),#FBF0F5);border-top:3px solid var(--border);border-bottom:3px solid var(--border);text-align:center;padding:52px 30px;}
+        .quote-sect blockquote{font-size:21px;color:var(--primary);font-style:italic;max-width:660px;margin:0 auto 12px;line-height:1.75;font-weight:500;}
+        .quote-sect cite{font-size:13px;color:var(--text-light);}
+
+        /* ---- جستجوی زنده ---- */
+        .live-search-bar{display:flex;align-items:center;background:var(--bg-card);border:2px solid var(--border);border-radius:28px;overflow:hidden;max-width:560px;margin:0 auto 30px;box-shadow:var(--shadow-sm);transition:border-color .2s;}
+        .live-search-bar:focus-within{border-color:var(--primary-light);}
+        .live-search-bar input{flex:1;padding:13px 20px;border:none;outline:none;font-size:14px;font-family:inherit;background:transparent;direction:rtl;color:var(--text);}
+        .live-search-bar svg{width:18px;height:18px;color:var(--text-light);margin:0 14px;}
+        .no-result-inline{background:#FFF0F5;color:var(--primary);padding:8px 16px;border-radius:10px;font-size:13.5px;display:block;text-align:center;margin-bottom:16px;}
+        .found-inline{background:#F0FFF4;color:#2E7D4F;padding:8px 16px;border-radius:10px;font-size:13.5px;display:block;text-align:center;margin-bottom:16px;}
+
+        /* ---- خبرنامه ---- */
+        .newsletter-sect{background:linear-gradient(135deg,var(--primary),var(--primary-mid));color:white;text-align:center;padding:52px 28px;}
+        .newsletter-sect h3{font-size:23px;font-weight:800;margin-bottom:10px;}
+        .newsletter-sect p{font-size:14.5px;opacity:.88;margin-bottom:24px;}
+        .nl-form{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+        .nl-form input{padding:13px 22px;border-radius:28px;border:2px solid rgba(255,255,255,.45);background:rgba(255,255,255,.15);color:white;font-size:14px;font-family:inherit;direction:rtl;width:280px;outline:none;}
+        .nl-form input::placeholder{color:rgba(255,255,255,.7);}
+        .nl-form button{padding:13px 28px;border-radius:28px;border:2px solid white;background:white;color:var(--primary);font-size:14px;font-weight:700;font-family:inherit;cursor:pointer;transition:.2s;}
+        .nl-form button:hover{background:transparent;color:white;}
+
+        @media(max-width:768px){
+            .hero-slide{flex-direction:column;}
+            .slide-img-col{width:100%;}
+            .slide-img-col img{height:200px;}
+            .slide-text-col{padding:24px 20px;}
+            .slide-text-col h2{font-size:20px;}
+            .featured-card{flex-direction:column;}
+            .featured-img-col{width:100%;height:220px;}
+            .stat-item{padding:18px 28px;}
+        }
+    .logo-img{
+    width:40px;
+    height:40px;
+    object-fit:contain;
+}
+    </style>
+</head>
+<body>
+<div id="readingBar"></div>
+<button id="btnTop" onclick="scrollToTop()" title="برگشت به بالا">
+    <svg width="20" height="20"><use href="#ic-chevron-l" style="transform:rotate(90deg);transform-box:fill-box;transform-origin:center;display:block;"/></svg>
+</button>
+
+<header>
+    <div class="header-top">
+        <a href="index.html" class="logo-area">
+            <img src="image/logo.png" alt="رویا بیوتی" class="logo-img">
+  
+            <div class="logo-text-wrap">
+                <h1>رویا بیوتی</h1>
+                <span>مجله تخصصی زیبایی و آرایش</span>
+            </div>
+        </a>
+        <form class="search-form" onsubmit="submitSearch(event)">
+            <input type="text" id="headerSearchInput" name="q" placeholder="جستجو در تمام مقالات...">
+            <button type="submit"><svg width="17" height="17"><use href="#ic-search"/></svg></button>
+        </form>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="index.html" class="active"><svg width="15" height="15"><use href="#ic-home"/></svg> خانه</a></li>
+            <li><a href="skincare.html"><svg width="15" height="15"><use href="#ic-spa"/></svg> مراقبت پوست</a></li>
+            <li><a href="makeup.html"><svg width="15" height="15"><use href="#ic-brush"/></svg> آرایش</a></li>
+            <li><a href="haircare.html"><svg width="15" height="15"><use href="#ic-scissors"/></svg> مراقبت مو</a></li>
+            <li><a href="natural.html"><svg width="15" height="15"><use href="#ic-leaf"/></svg> زیبایی طبیعی</a></li>
+            <li><a href="about.html"<svg width="15" height="15"><use href="#ic-info"/></svg> درباره ما</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- تیپ روز -->
+<div class="tip-bar">
+    <b>نکته امروز:</b><span id="dailyTip">در حال بارگذاری...</span>
+</div>
+
+<!-- اسلایدشو -->
+<div class="slideshow-wrap">
+    <div class="hero-slide">
+        <div class="slide-img-col">
+            <img src="image/1.jpg" alt="مراقبت پوست"
+                 onerror="this.style.background='linear-gradient(135deg,#EDCFDA,#C4607E)';this.removeAttribute('src');">
+        </div>
+        <div class="slide-text-col">
+            <span class="cat-tag"><svg width="11" height="11"><use href="#ic-spa"/></svg> مراقبت پوست</span>
+            <h2>روتین کامل مراقبت از پوست در صبح و شب</h2>
+            <p>پوست سالم با یک روتین منظم ساخته می‌شود. یاد بگیرید هر مرحله چه هدفی دارد و کدام محصولات برای شما مناسب‌تر است.</p>
+            <a href="skincare.html" class="btn-read"><svg width="14" height="14"><use href="#ic-arrow-r"/></svg> مطالعه مقاله</a>
+        </div>
+    </div>
+    <div class="hero-slide">
+        <div class="slide-img-col">
+            <img src="image/2.jpg" alt="آرایش"
+                 onerror="this.style.background='linear-gradient(135deg,#F5D0DC,#C4607E)';this.removeAttribute('src');">
+        </div>
+        <div class="slide-text-col">
+            <span class="cat-tag"><svg width="11" height="11"><use href="#ic-brush"/></svg> آرایش</span>
+            <h2>آرایش طبیعی و ماندگار برای هر روز</h2>
+            <p>تکنیک‌های حرفه‌ای آرایش طبیعی که از صبح تا شب دوام می‌آورد. از انتخاب فانداسیون تا هایلایت ظریف.</p>
+            <a href="makeup.html" class="btn-read"><svg width="14" height="14"><use href="#ic-arrow-r"/></svg> مطالعه مقاله</a>
+        </div>
+    </div>
+    <div class="hero-slide">
+        <div class="slide-img-col">
+            <img src="image/3.jpg" alt="مراقبت مو"
+                 onerror="this.style.background='linear-gradient(135deg,#D0DCF5,#607EC4)';this.removeAttribute('src');">
+        </div>
+        <div class="slide-text-col">
+            <span class="cat-tag"><svg width="11" height="11"><use href="#ic-scissors"/></svg> مراقبت مو</span>
+            <h2>راز موهای پرپشت، براق و قوی</h2>
+            <p>از علت ریزش مو تا بهترین روغن‌های طبیعی. همه آنچه که برای داشتن موهایی رویایی نیاز دارید.</p>
+            <a href="haircare.html" class="btn-read"><svg width="14" height="14"><use href="#ic-arrow-r"/></svg> مطالعه مقاله</a>
+        </div>
+    </div>
+    <div class="hero-slide">
+        <div class="slide-img-col">
+            <img src="image/4.jpg" alt="زیبایی طبیعی"
+                 onerror="this.style.background='linear-gradient(135deg,#D0F5D8,#60C480)';this.removeAttribute('src');">
+        </div>
+        <div class="slide-text-col">
+            <span class="cat-tag"><svg width="11" height="11"><use href="#ic-leaf"/></svg> زیبایی طبیعی</span>
+            <h2>ماسک‌های خانگی که واقعاً جواب می‌دهند</h2>
+            <p>عسل، آلوئه‌ورا، آووکادو و توت‌فرنگی — بهترین ماسک‌ها با مواد طبیعی داخل یخچال شما.</p>
+            <a href="natural.html" class="btn-read"><svg width="14" height="14"><use href="#ic-arrow-r"/></svg> مطالعه مقاله</a>
+        </div>
+    </div>
+    <button class="slide-nav-btn right" onclick="prevSlide()"><svg width="18" height="18"><use href="#ic-chevron-r"/></svg></button>
+    <button class="slide-nav-btn left" onclick="nextSlide()"><svg width="18" height="18"><use href="#ic-chevron-l"/></svg></button>
+</div>
+<div class="slide-dots">
+    <span class="slide-dot" onclick="dotSlide(0)"></span>
+    <span class="slide-dot" onclick="dotSlide(1)"></span>
+    <span class="slide-dot" onclick="dotSlide(2)"></span>
+    <span class="slide-dot" onclick="dotSlide(3)"></span>
+</div>
+
+<!-- آمار -->
+<div class="stats-bar">
+    <div class="stat-item"><span class="stat-num" id="counter1">0</span><div class="stat-label">مقاله تخصصی</div></div>
+    <div class="stat-item"><span class="stat-num" id="counter2">0</span><div class="stat-label">متخصص زیبایی</div></div>
+    <div class="stat-item"><span class="stat-num" id="counter3">0</span><div class="stat-label">خواننده ماهانه</div></div>
+</div>
+
+<!-- مقاله ویژه -->
+<div style="max-width:1100px;margin:50px auto 0;padding:0 20px;">
+    <h2 class="section-title"><svg width="20" height="20" style="vertical-align:middle;margin-left:7px;"><use href="#ic-star"/></svg> مقاله ویژه هفته</h2>
+    <div class="featured-card">
+        <div class="featured-img-col">
+            <img src="image/5.jpg" alt="روتین پوست"
+                 onerror="this.style.background='linear-gradient(135deg,#EDCFDA,#C4607E)';this.removeAttribute('src');">
+        </div>
+        <div class="featured-body">
+            <span class="featured-badge"><svg width="11" height="11"><use href="#ic-star"/></svg> مقاله ویژه</span>
+            <h2>روتین کامل مراقبت از پوست — راهنمای گام به گام</h2>
+            <p>
+                پوست سالم نیاز به مراقبت <strong>روزانه و منظم</strong> دارد. این راهنمای جامع تمام مراحل را از
+                <strong>پاک‌سازی</strong> تا <strong>کرم ضدآفتاب</strong> توضیح می‌دهد. یاد می‌گیرید کدام محصولات
+                برای نوع پوست شما مناسب‌تر است و چطور یک روتین <em>پنج مرحله‌ای</em> ساده و مؤثر داشته باشید.
+                جدول مقایسه انواع پوست و نیازهای هر کدام را هم خواهید دید.
+            </p>
+            <div class="featured-meta">
+                <span><svg width="12" height="12"><use href="#ic-calendar"/></svg> ۱۵ خرداد ۱۴۰۳</span>
+                <span><svg width="12" height="12"><use href="#ic-clock"/></svg> ۶ دقیقه مطالعه</span>
+                <span><svg width="12" height="12"><use href="#ic-eye"/></svg> ۲,۴۵۰ بازدید</span>
+            </div>
+            <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
+                <a href="skincare.html" class="btn-read"><svg width="14" height="14"><use href="#ic-arrow-r"/></svg> مطالعه کامل</a>
+                <button class="like-btn" data-liked="false" data-count="128" onclick="toggleLike(this)">
+                    <svg class="like-icon" width="14" height="14"><use href="#ic-heart"/></svg>
+                    <span class="like-count">128</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- دسته‌بندی‌ها -->
+<div style="max-width:1100px;margin:52px auto 0;padding:0 20px;">
+    <h2 class="section-title"><svg width="20" height="20" style="vertical-align:middle;margin-left:7px;"><use href="#ic-tag"/></svg> دسته‌بندی مقالات</h2>
+    <div class="cat-grid">
+        <a href="skincare.html" class="cat-card">
+            <div class="cat-card-img">
+               <img src="image/8.jpg">
+            </div>
+            <div class="cat-card-body">
+                <h3>مراقبت از پوست</h3>
+                <span>۱۲ مقاله تخصصی</span>
+            </div>
+        </a>
+        <a href="makeup.html" class="cat-card">
+            <div class="cat-card-img">
+               <img src="image/7.jpg">
+            </div>
+            <div class="cat-card-body">
+                <h3>آرایش</h3>
+                <span>۹ مقاله تخصصی</span>
+            </div>
+        </a>
+        <a href="haircare.html" class="cat-card">
+            <div class="cat-card-img">
+                <img src="image/6.jpg">
+            </div>
+            <div class="cat-card-body">
+                <h3>مراقبت از مو</h3>
+                <span>۸ مقاله تخصصی</span>
+            </div>
+        </a>
+        <a href="natural.html" class="cat-card">
+            <div class="cat-card-img">
+              <img src="image/natural-cover.jpg">
+            </div>
+            <div class="cat-card-body">
+                <h3>زیبایی طبیعی</h3>
+                <span>۷ مقاله تخصصی</span>
+            </div>
+        </a>
+    </div>
+</div>
+
+<!-- آخرین مقالات با جستجوی زنده -->
+<div style="max-width:1100px;margin:52px auto 0;padding:0 20px;">
+    <h2 class="section-title"><svg width="20" height="20" style="vertical-align:middle;margin-left:7px;"><use href="#ic-book"/></svg> آخرین مقالات</h2>
+
+    <!-- جستجوی زنده -->
+    <div class="live-search-bar">
+        <svg width="18" height="18"><use href="#ic-search"/></svg>
+        <input type="text" id="liveSearchInput" placeholder="جستجو در مقالات زیر..." oninput="liveSearch()">
+    </div>
+    <div id="searchResultMsg"></div>
+
+    <div class="articles-grid">
+        <div class="card">
+            <img class="card-img" src="image/sunscreen.jpg" alt="مراقبت پوست"
+                 onerror="this.style.background='linear-gradient(135deg,#EDCFDA,#C4607E)';this.removeAttribute('src');">
+            <div class="card-body">
+                <span class="card-category"><svg><use href="#ic-spa"/></svg> مراقبت پوست</span>
+                <h3>روتین کامل مراقبت از پوست در صبح و شب</h3>
+                <p>یاد بگیرید با یک روتین <strong>پنج مرحله‌ای</strong> ساده، پوستی درخشان و سالم داشته باشید.</p>
+                <div class="card-meta">
+                    <span><svg width="12" height="12"><use href="#ic-calendar"/></svg> ۱۵ خرداد ۱۴۰۳</span>
+                    <span><svg width="12" height="12"><use href="#ic-clock"/></svg> ۶ دقیقه</span>
+                </div>
+                <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+                    <a href="skincare.html" class="btn-read"><svg width="13" height="13"><use href="#ic-arrow-r"/></svg> ادامه مطلب</a>
+                    <button class="like-btn" data-liked="false" data-count="94" onclick="toggleLike(this)">
+                        <svg class="like-icon" width="14" height="14"><use href="#ic-heart"/></svg><span class="like-count">94</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <img class="card-img" src="image/foundation.jpg" alt="آرایش"
+                 onerror="this.style.background='linear-gradient(135deg,#F5D0DC,#B04070)';this.removeAttribute('src');">
+            <div class="card-body">
+                <span class="card-category"><svg><use href="#ic-brush"/></svg> آرایش</span>
+                <h3>آرایش طبیعی و بدون نقص برای هر روز</h3>
+                <p>تکنیک‌های <em>حرفه‌ای</em> برای داشتن آرایشی شفاف که از صبح تا شب ماندگار باشد.</p>
+                <div class="card-meta">
+                    <span><svg width="12" height="12"><use href="#ic-calendar"/></svg> ۱۰ خرداد ۱۴۰۳</span>
+                    <span><svg width="12" height="12"><use href="#ic-clock"/></svg> ۵ دقیقه</span>
+                </div>
+                <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+                    <a href="makeup.html" class="btn-read"><svg width="13" height="13"><use href="#ic-arrow-r"/></svg> ادامه مطلب</a>
+                    <button class="like-btn" data-liked="false" data-count="76" onclick="toggleLike(this)">
+                        <svg class="like-icon" width="14" height="14"><use href="#ic-heart"/></svg><span class="like-count">76</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <img class="card-img" src="image/scalp-massage.jpg" alt="مراقبت مو"
+                 onerror="this.style.background='linear-gradient(135deg,#D0DCF5,#607EC4)';this.removeAttribute('src');">
+            <div class="card-body">
+                <span class="card-category"><svg><use href="#ic-scissors"/></svg> مراقبت مو</span>
+                <h3>راز داشتن موهایی پرپشت و براق</h3>
+                <p>با روش‌های خانگی موهایتان را <strong>تقویت کنید</strong> و از ریزش مو جلوگیری کنید.</p>
+                <div class="card-meta">
+                    <span><svg width="12" height="12"><use href="#ic-calendar"/></svg> ۵ خرداد ۱۴۰۳</span>
+                    <span><svg width="12" height="12"><use href="#ic-clock"/></svg> ۷ دقیقه</span>
+                </div>
+                <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+                    <a href="haircare.html" class="btn-read"><svg width="13" height="13"><use href="#ic-arrow-r"/></svg> ادامه مطلب</a>
+                    <button class="like-btn" data-liked="false" data-count="58" onclick="toggleLike(this)">
+                        <svg class="like-icon" width="14" height="14"><use href="#ic-heart"/></svg><span class="like-count">58</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <img class="card-img" src="image/11.jpg" alt="زیبایی طبیعی"
+                 onerror="this.style.background='linear-gradient(135deg,#D0F5D8,#60A870)';this.removeAttribute('src');">
+            <div class="card-body">
+                <span class="card-category"><svg><use href="#ic-leaf"/></svg> زیبایی طبیعی</span>
+                <h3>ماسک‌های خانگی با مواد طبیعی</h3>
+                <p>بهترین ماسک‌ها با مواد داخل <em>یخچال‌تان</em> — عسل، آلوئه‌ورا، آووکادو و توت‌فرنگی.</p>
+                <div class="card-meta">
+                    <span><svg width="12" height="12"><use href="#ic-calendar"/></svg> ۱ خرداد ۱۴۰۳</span>
+                    <span><svg width="12" height="12"><use href="#ic-clock"/></svg> ۴ دقیقه</span>
+                </div>
+                <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+                    <a href="natural.html" class="btn-read"><svg width="13" height="13"><use href="#ic-arrow-r"/></svg> ادامه مطلب</a>
+                    <button class="like-btn" data-liked="false" data-count="102" onclick="toggleLike(this)">
+                        <svg class="like-icon" width="14" height="14"><use href="#ic-heart"/></svg><span class="like-count">102</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <img class="card-img" src="image/22.jpg" alt="کرم ضدآفتاب"
+                 onerror="this.style.background='linear-gradient(135deg,#F5F0D0,#C4B060)';this.removeAttribute('src');">
+            <div class="card-body">
+                <span class="card-category"><svg><use href="#ic-spa"/></svg> مراقبت پوست</span>
+                <h3>محافظت از پوست در برابر آفتاب تابستان</h3>
+                <p>کرم ضدآفتاب مناسب را بشناسید و پوستتان را از آسیب اشعه <strong>UV</strong> نجات دهید.</p>
+                <div class="card-meta">
+                    <span><svg width="12" height="12"><use href="#ic-calendar"/></svg> ۲۸ اردیبهشت ۱۴۰۳</span>
+                    <span><svg width="12" height="12"><use href="#ic-clock"/></svg> ۵ دقیقه</span>
+                </div>
+                <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+                    <a href="skincare.html" class="btn-read"><svg width="13" height="13"><use href="#ic-arrow-r"/></svg> ادامه مطلب</a>
+                    <button class="like-btn" data-liked="false" data-count="83" onclick="toggleLike(this)">
+                        <svg class="like-icon" width="14" height="14"><use href="#ic-heart"/></svg><span class="like-count">83</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <img class="card-img" src="image/33.jpg" alt="رژ لب"
+                 onerror="this.style.background='linear-gradient(135deg,#F5D0E8,#B04080)';this.removeAttribute('src');">
+            <div class="card-body">
+                <span class="card-category"><svg><use href="#ic-brush"/></svg> آرایش</span>
+                <h3>انتخاب رنگ رژ لب مناسب برای رنگ پوست</h3>
+                <p>راهنمای کامل انتخاب رنگ رژ لب بر اساس رنگ پوست و مناسبت‌های مختلف زندگی.</p>
+                <div class="card-meta">
+                    <span><svg width="12" height="12"><use href="#ic-calendar"/></svg> ۲۵ اردیبهشت ۱۴۰۳</span>
+                    <span><svg width="12" height="12"><use href="#ic-clock"/></svg> ۴ دقیقه</span>
+                </div>
+                <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+                    <a href="makeup.html" class="btn-read"><svg width="13" height="13"><use href="#ic-arrow-r"/></svg> ادامه مطلب</a>
+                    <button class="like-btn" data-liked="false" data-count="67" onclick="toggleLike(this)">
+                        <svg class="like-icon" width="14" height="14"><use href="#ic-heart"/></svg><span class="like-count">67</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- نقل قول -->
+<div class="quote-sect" style="margin-top:60px;">
+    <svg width="36" height="36" style="color:var(--border);margin-bottom:16px;"><use href="#ic-quote"/></svg>
+    <blockquote>زیبایی واقعی از درون می‌آید — اما مراقبت از بیرون، آن زیبایی درونی را به جهان نشان می‌دهد.</blockquote>
+    <cite>— تیم تخصصی رویا بیوتی</cite>
+</div>
+
+<!-- مطالب پرخواننده -->
+<div style="max-width:1100px;margin:55px auto 0;padding:0 20px;">
+    <h2 class="section-title"><svg width="20" height="20" style="vertical-align:middle;margin-left:7px;"><use href="#ic-fire"/></svg> مطالب پرخواننده</h2>
+    <div class="mini-grid">
+        <div class="mini-card">
+            <img src="image/44.jpg" alt="پاک‌سازی"
+                 onerror="this.style.background='linear-gradient(135deg,#EDCFDA,#C4607E)';this.removeAttribute('src');">
+            <div class="mini-card-body">
+                <h4>۵ اشتباه رایج در پاک‌سازی صورت</h4>
+                <div class="mini-meta"><svg><use href="#ic-calendar"/></svg> ۲۰ خرداد | <svg><use href="#ic-clock"/></svg> ۳ دقیقه</div>
+                <a href="skincare.html">ادامه مطلب <svg><use href="#ic-arrow-r"/></svg></a>
+            </div>
+        </div>
+        <div class="mini-card">
+            <img src="image/55.jpg" alt="ماسک طبیعی"
+                 onerror="this.style.background='linear-gradient(135deg,#D0F5D8,#60A870)';this.removeAttribute('src');">
+            <div class="mini-card-body">
+                <h4>ماسک عسل و دارچین برای جوش‌های ریز</h4>
+                <div class="mini-meta"><svg><use href="#ic-calendar"/></svg> ۱۸ خرداد | <svg><use href="#ic-clock"/></svg> ۲ دقیقه</div>
+                <a href="natural.html">ادامه مطلب <svg><use href="#ic-arrow-r"/></svg></a>
+            </div>
+        </div>
+        <div class="mini-card">
+            <img src="image/66.jpg" alt="خشک کردن مو"
+                 onerror="this.style.background='linear-gradient(135deg,#D0DCF5,#607EC4)';this.removeAttribute('src');">
+            <div class="mini-card-body">
+                <h4>چطور مو را بدون آسیب خشک کنیم؟</h4>
+                <div class="mini-meta"><svg><use href="#ic-calendar"/></svg> ۱۶ خرداد | <svg><use href="#ic-clock"/></svg> ۳ دقیقه</div>
+                <a href="haircare.html">ادامه مطلب <svg><use href="#ic-arrow-r"/></svg></a>
+            </div>
+        </div>
+        <div class="mini-card">
+            <img src="image/77.jpg" alt="سایه چشم"
+                 onerror="this.style.background='linear-gradient(135deg,#F5D0DC,#B04070)';this.removeAttribute('src');">
+            <div class="mini-card-body">
+                <h4>ترفند ماندگاری سایه چشم تا شب</h4>
+                <div class="mini-meta"><svg><use href="#ic-calendar"/></svg> ۱۴ خرداد | <svg><use href="#ic-clock"/></svg> ۲ دقیقه</div>
+                <a href="makeup.html">ادامه مطلب <svg><use href="#ic-arrow-r"/></svg></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- خبرنامه -->
+<div class="newsletter-sect" style="margin-top:62px;">
+    <svg width="40" height="40" style="color:rgba(255,255,255,.5);margin-bottom:14px;"><use href="#ic-mail"/></svg>
+    <h3>عضو خبرنامه رویا بیوتی شوید</h3>
+    <p>هر هفته جدیدترین مقالات و نکات زیبایی را مستقیم در ایمیل‌تان دریافت کنید</p>
+    <form class="nl-form" onsubmit="return subscribeNewsletter(event);">
+        <input type="text" id="newsletterEmail" placeholder="ایمیل شما...">
+        <button type="submit">عضویت رایگان</button>
+    </form>
+</div>
+
+<footer>
+    <div class="footer-top">
+        <div class="footer-col">
+            <h4>رویا بیوتی</h4>
+            <p>مجله تخصصی زیبایی و آرایش. بهترین مقالات آموزشی توسط متخصصان برای شما.</p>
+        </div>
+        <div class="footer-col">
+            <h4>دسترسی سریع</h4>
+            <ul>
+                <li><a href="index.html"><svg width="14" height="14"><use href="#ic-home"/></svg> خانه</a></li>
+                <li><a href="skincare.html"><svg width="14" height="14"><use href="#ic-spa"/></svg> مراقبت پوست</a></li>
+                <li><a href="makeup.html"><svg width="14" height="14"><use href="#ic-brush"/></svg> آرایش</a></li>
+                <li><a href="haircare.html"><svg width="14" height="14"><use href="#ic-scissors"/></svg> مراقبت مو</a></li>
+                <li><a href="natural.html"><svg width="14" height="14"><use href="#ic-leaf"/></svg> زیبایی طبیعی</a></li>
+                <li><a href="about.html"><svg width="14" height="14"><use href="#ic-info"/></svg> درباره ما</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>تماس با ما</h4>
+            <ul>
+                <li><a href="#"><svg width="14" height="14"><use href="#ic-mail"/></svg> royabeauty@email.com</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom"><p>&copy; ۱۴۰۳ رویا بیوتی — تمامی حقوق محفوظ است</p></div>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="راز داشتن موهایی پرپشت و براق - رویا بیوتی">
+    <title>مراقبت از مو | رویا بیوتی</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        #readingBar{position:fixed;top:0;right:0;height:4px;width:0;background:linear-gradient(to left,var(--primary),var(--accent));z-index:9999;}
+        #btnTop{display:none;position:fixed;bottom:28px;left:28px;background:linear-gradient(135deg,var(--primary),var(--primary-mid));color:white;border:none;border-radius:50%;width:48px;height:48px;cursor:pointer;box-shadow:0 4px 16px rgba(107,30,60,.35);z-index:999;align-items:center;justify-content:center;}
+        #btnTop:hover{transform:scale(1.1);}
+    </style>
+</head>
+<body>
+<div id="readingBar"></div>
+<button id="btnTop" onclick="scrollToTop()" title="برگشت به بالا">
+    <svg width="20" height="20"><use href="#ic-arrow-l" style="transform:rotate(90deg);transform-box:fill-box;transform-origin:center;display:block;"/></svg>
+</button>
+
+<header>
+    <div class="header-top">
+        <a href="index.html" class="logo-area">
+            <img src="image/logo.png" alt="رویا بیوتی" class="logo-img">
+            <div class="logo-text-wrap"><h1>رویا بیوتی</h1><span>مجله تخصصی زیبایی و آرایش</span></div>
+        </a>
+        <form class="search-form" onsubmit="submitSearch(event)">
+            <input type="text" id="headerSearchInput" name="q" placeholder="جستجو در مقالات...">
+            <button type="submit"><svg width="17" height="17"><use href="#ic-search"/></svg></button>
+        </form>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="index.html"><svg width="15" height="15"><use href="#ic-home"/></svg> خانه</a></li>
+            <li><a href="skincare.html"><svg width="15" height="15"><use href="#ic-spa"/></svg> مراقبت پوست</a></li>
+            <li><a href="makeup.html"><svg width="15" height="15"><use href="#ic-brush"/></svg> آرایش</a></li>
+            <li><a href="haircare.html" class="active"><svg width="15" height="15"><use href="#ic-scissors"/></svg> مراقبت مو</a></li>
+            <li><a href="natural.html"><svg width="15" height="15"><use href="#ic-leaf"/></svg> زیبایی طبیعی</a></li>
+            <li><a href="about.html"><svg width="15" height="15"><use href="#ic-info"/></svg> درباره ما</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="article-page">
+    <a href="index.html" class="back-btn"><svg width="16" height="16"><use href="#ic-arrow-l"/></svg> بازگشت به خانه</a>
+
+    <div class="article-header">
+        <span class="category-badge"><svg width="12" height="12"><use href="#ic-scissors"/></svg> مراقبت از مو</span>
+        <h1>راز داشتن موهایی پرپشت و براق</h1>
+        <div class="article-meta">
+            <span><svg width="13" height="13"><use href="#ic-users"/></svg> نازنین رضایی</span>
+            <span><svg width="13" height="13"><use href="#ic-calendar"/></svg> ۵ خرداد ۱۴۰۳</span>
+            <span><svg width="13" height="13"><use href="#ic-clock"/></svg> ۷ دقیقه مطالعه</span>
+            <span><svg width="13" height="13"><use href="#ic-eye"/></svg> ۱,۸۸۰ بازدید</span>
+        </div>
+    </div>
+
+    <img class="article-cover"
+         src="image/6.jpg"
+         alt="مراقبت از مو"
+         onerror="this.style.background='linear-gradient(135deg,#D0DCF5,#607EC4,#1E3C6B)';this.removeAttribute('src');">
+
+    <div class="article-content">
+        <p>
+            مو یکی از مهم‌ترین عناصر زیبایی است. <strong>موهای سالم و پرپشت</strong>
+            نه تنها زیبایی ظاهری را افزایش می‌دهد، بلکه نشانه سلامت کلی بدن است.
+            در این مقاله جامع، تمام آنچه که برای داشتن موهایی رویایی نیاز دارید می‌آموزید.
+        </p>
+
+        <blockquote>
+            "موی خوب، روز خوب می‌سازد. اما موی سالم، یک عمر زیبایی می‌سازد."
+        </blockquote>
+
+        <h2>علت اصلی ریزش مو چیست؟</h2>
+        <img src="image/hair-loss.jpg"
+     alt="ریزش مو"
+     style="width:100%;border-radius:12px;margin:20px 0;">
+        <ul>
+            <li><strong>کمبود تغذیه:</strong> آهن، بیوتین، ویتامین D و زینک</li>
+            <li><strong>استرس:</strong> یکی از شایع‌ترین دلایل ریزش ناگهانی</li>
+            <li><strong>تغییرات هورمونی:</strong> بارداری، یائسگی، تیروئید</li>
+            <li><strong>آسیب مکانیکی:</strong> خشک‌کن زیاد، اتو، رنگ مو</li>
+            <li><strong>شوره سر:</strong> که فولیکول‌ها را ضعیف می‌کند</li>
+        </ul>
+
+        <h2>روتین مراقبت صحیح از مو</h2>
+
+        <h3>شستشوی درست</h3>
+        <p>
+            موهای چرب را هر روز یا یک روز در میان، موهای خشک هر ۳ تا ۴ روز بشویید.
+            <mark>شامپو را روی پوست سر ماساژ دهید</mark>، نه طول مو.
+            نرم‌کننده را از <ins>وسط تا نوک</ins> بزنید، نه ریشه.
+        </p>
+
+        <h3>ماساژ روزانه پوست سر</h3>
+        <img src="image/scalp-massage.jpg"
+     alt="ماساژ پوست سر"
+     style="width:100%;border-radius:12px;margin:20px 0;">
+        <p>
+            روزانه <strong>۵ دقیقه ماساژ</strong> گردش خون را بهبود می‌بخشد و رشد مو را تحریک می‌کند.
+            با نوک انگشتان (نه ناخن) دایره‌های کوچک بکشید.
+        </p>
+
+        <h3>خشک کردن صحیح</h3>
+        <p>
+            مو وقتی خیس است بسیار شکننده است. با <em>حوله میکروفایبر</em> آرام فشار دهید،
+            نه مالش. از خشک‌کن روی حرارت زیاد پرهیز کنید.
+            <del>کشیدن حوله</del> → <ins>فشار ملایم و پت کردن</ins>
+        </p>
+
+        <div class="tip-box">
+            <strong><svg width="16" height="16"><use href="#ic-bulb"/></svg> روغن قبل از شستشو:</strong>
+            ۳۰ دقیقه تا یک ساعت قبل از شستشو، روغن نارگیل یا آرگان بزنید.
+            از موها در برابر آسیب آب محافظت می‌کند و نرمی را دو برابر می‌کند!
+        </div>
+
+        <h2>روغن‌های طبیعی برای مو</h2>
+        <img src="image/hair-oils.jpg"
+     alt="روغن‌های طبیعی مو"
+     style="width:100%;border-radius:12px;margin:20px 0;">
+        <table>
+            <caption><strong>مقایسه روغن‌های مفید برای مو</strong></caption>
+            <thead>
+                <tr><th>روغن</th><th>فایده اصلی</th><th>مناسب برای</th><th>روش استفاده</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>نارگیل</strong></td><td>تغذیه عمیق، ضدشکستگی</td><td>موهای خشک و آسیب‌دیده</td><td>۳۰ دقیقه قبل از شستشو</td></tr>
+                <tr><td><strong>آرگان</strong></td><td>براق‌سازی، نرم‌کنندگی</td><td>همه انواع مو</td><td>روی مو خیس یا خشک</td></tr>
+                <tr><td><strong>کرچک</strong></td><td>تقویت رشد، ضدریزش</td><td>موهای نازک</td><td>پوست سر، ۱ ساعت</td></tr>
+                <tr><td><strong>جوجوبا</strong></td><td>تنظیم چربی سر</td><td>موهای چرب</td><td>پوست سر، مقدار کم</td></tr>
+                <tr><td><strong>زیتون</strong></td><td>مرطوب‌سازی</td><td>موهای فر</td><td>ماسک شبانه</td></tr>
+            </tbody>
+        </table>
+
+        <h2>ماسک خانگی تقویتی مو</h2>
+        <img src="image/hair-mask.jpg"
+     alt="ماسک خانگی مو"
+     style="width:100%;border-radius:12px;margin:20px 0;">
+        <h3>ماسک تخم مرغ و عسل</h3>
+        <p><strong>مواد:</strong> ۱ عدد تخم‌مرغ + ۲ قاشق عسل + ۱ قاشق روغن زیتون</p>
+        <ol>
+            <li>همه مواد را مخلوط کنید تا یکدست شود</li>
+            <li>روی موهای خشک از ریشه تا نوک بمالید</li>
+            <li>با کلاه دوش بپوشانید و ۳۰ دقیقه صبر کنید</li>
+            <li>با آب ولرم (نه داغ) بشویید</li>
+        </ol>
+
+        <h2>تغذیه برای موهای قوی</h2>
+        <img src="image/hair-food.jpg"
+     alt="تغذیه مناسب مو"
+     style="width:100%;border-radius:12px;margin:20px 0;">
+        <ul>
+            <li><strong>پروتئین:</strong> تخم‌مرغ، ماهی، حبوبات — مو از کراتین ساخته شده</li>
+            <li><strong>آهن:</strong> اسفناج، عدس — کمبود آهن شایع‌ترین علت ریزش است</li>
+            <li><strong>بیوتین (B<sub>7</sub>):</strong> آووکادو، آجیل، تخم‌مرغ</li>
+            <li><strong>امگا ۳:</strong> ماهی چرب، گردو، بذر کتان</li>
+        </ul>
+
+        <p style="margin-top:22px;">صبور باشید! نتیجه مراقبت از مو بعد از <strong>۳ تا ۶ ماه</strong> قابل مشاهده است.</p>
+
+        <a href="index.html" class="back-btn"><svg width="16" height="16"><use href="#ic-arrow-l"/></svg> بازگشت به لیست مقالات</a>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-top">
+        <div class="footer-col"><h4>رویا بیوتی</h4><p>مجله تخصصی زیبایی و آرایش برای زنان ایرانی</p></div>
+        <div class="footer-col">
+            <h4>دسترسی سریع</h4>
+            <ul>
+                <li><a href="index.html"><svg width="14" height="14"><use href="#ic-home"/></svg> خانه</a></li>
+                <li><a href="skincare.html"><svg width="14" height="14"><use href="#ic-spa"/></svg> مراقبت پوست</a></li>
+                <li><a href="makeup.html"><svg width="14" height="14"><use href="#ic-brush"/></svg> آرایش</a></li>
+                <li><a href="haircare.html"><svg width="14" height="14"><use href="#ic-scissors"/></svg> مراقبت مو</a></li>
+                <li><a href="natural.html"><svg width="14" height="14"><use href="#ic-leaf"/></svg> زیبایی طبیعی</a></li>
+                <li><a href="about.html"><svg width="14" height="14"><use href="#ic-info"/></svg> درباره ما</a></li>
+            </ul>
+        </div>
+        <div class="footer-col"><h4>تماس با ما</h4><ul><li><a href="#"><svg width="14" height="14"><use href="#ic-mail"/></svg> royabeauty@email.com</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>&copy; ۱۴۰۳ رویا بیوتی — تمامی حقوق محفوظ است</p></div>
+</footer>
+<script src="js/script.js"></script>
+</body>
+</html>

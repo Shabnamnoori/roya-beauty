@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="آرایش طبیعی و بدون نقص برای هر روز - رویا بیوتی">
+    <title>آرایش | رویا بیوتی</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        #readingBar{position:fixed;top:0;right:0;height:4px;width:0;background:linear-gradient(to left,var(--primary),var(--accent));z-index:9999;}
+        #btnTop{display:none;position:fixed;bottom:28px;left:28px;background:linear-gradient(135deg,var(--primary),var(--primary-mid));color:white;border:none;border-radius:50%;width:48px;height:48px;cursor:pointer;box-shadow:0 4px 16px rgba(107,30,60,.35);z-index:999;align-items:center;justify-content:center;}
+        #btnTop:hover{transform:scale(1.1);}
+    </style>
+</head>
+<body>
+<div id="readingBar"></div>
+<button id="btnTop" onclick="scrollToTop()" title="برگشت به بالا">
+    <svg width="20" height="20"><use href="#ic-arrow-l" style="transform:rotate(90deg);transform-box:fill-box;transform-origin:center;display:block;"/></svg>
+</button>
+
+<header>
+    <div class="header-top">
+        <a href="index.html" class="logo-area">
+           <img src="image/logo.png" alt="رویا بیوتی" class="logo-img">
+            <div class="logo-text-wrap"><h1>رویا بیوتی</h1><span>مجله تخصصی زیبایی و آرایش</span></div>
+        </a>
+        <form class="search-form" onsubmit="submitSearch(event)">
+            <input type="text" id="headerSearchInput" name="q" placeholder="جستجو در مقالات...">
+            <button type="submit"><svg width="17" height="17"><use href="#ic-search"/></svg></button>
+        </form>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="index.html"><svg width="15" height="15"><use href="#ic-home"/></svg> خانه</a></li>
+            <li><a href="skincare.html"><svg width="15" height="15"><use href="#ic-spa"/></svg> مراقبت پوست</a></li>
+            <li><a href="makeup.html" class="active"><svg width="15" height="15"><use href="#ic-brush"/></svg> آرایش</a></li>
+            <li><a href="haircare.html"><svg width="15" height="15"><use href="#ic-scissors"/></svg> مراقبت مو</a></li>
+            <li><a href="natural.html"><svg width="15" height="15"><use href="#ic-leaf"/></svg> زیبایی طبیعی</a></li>
+            <li><a href="about.html"><svg width="15" height="15"><use href="#ic-info"/></svg> درباره ما</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="article-page">
+    <a href="index.html" class="back-btn"><svg width="16" height="16"><use href="#ic-arrow-l"/></svg> بازگشت به خانه</a>
+
+    <div class="article-header">
+        <span class="category-badge"><svg width="12" height="12"><use href="#ic-brush"/></svg> آرایش</span>
+        <h1>آرایش طبیعی و بدون نقص برای هر روز</h1>
+        <div class="article-meta">
+            <span><svg width="13" height="13"><use href="#ic-users"/></svg> مهسا کریمی</span>
+            <span><svg width="13" height="13"><use href="#ic-calendar"/></svg> ۱۰ خرداد ۱۴۰۳</span>
+            <span><svg width="13" height="13"><use href="#ic-clock"/></svg> ۵ دقیقه مطالعه</span>
+            <span><svg width="13" height="13"><use href="#ic-eye"/></svg> ۳,۱۲۰ بازدید</span>
+        </div>
+    </div>
+
+    <img class="article-cover"
+         src="image/7.jpg"
+         alt="محصولات آرایشی حرفه‌ای"
+         onerror="this.style.background='linear-gradient(135deg,#F5D0DC,#B04070,#6B1E3C)';this.removeAttribute('src');">
+
+    <div class="article-content">
+        <p>
+            آرایش طبیعی هنر پنهان کردن نقص‌ها با حفظ ظاهر طبیعی است. هدف این نیست که
+            مشخص باشد آرایش کرده‌اید، بلکه باید <strong>بهترین نسخه طبیعی خودتان</strong>
+            به نظر برسید. در این مقاله، گام به گام یاد می‌گیرید چطور آرایشی تمیز، ماندگار و شفاف داشته باشید.
+        </p>
+
+        <blockquote>
+            "آرایش خوب آن است که کسی نفهمد آرایش کرده‌اید — فقط فکر کند امروز خیلی خوب به نظر می‌رسید."
+        </blockquote>
+
+        <h2>قبل از شروع — آماده‌سازی پوست</h2>
+        <img src="image/skin-prep.jpg"
+     alt="آماده سازی پوست قبل آرایش"
+     style="width:100%;border-radius:12px;margin:20px 0;">
+        <p>پایه آرایش، پوست آماده‌شده است. بدون آماده‌سازی صحیح، حتی بهترین محصولات هم نتیجه مطلوب نمی‌دهند.</p>
+        <ul>
+            <li>صورت را با <strong>پاک‌کننده ملایم</strong> بشویید</li>
+            <li>مرطوب‌کننده بزنید و <em>۵ دقیقه</em> صبر کنید تا جذب شود</li>
+            <li>کرم ضدآفتاب <var>SPF</var> حتماً بزنید — آستری خوبی برای آرایش هم می‌شود</li>
+            <li>برای ماندگاری بیشتر، یک لایه <strong>پرایمر</strong> بزنید</li>
+        </ul>
+
+        <h2>مرحله اول — پوشش پایه (فانداسیون)</h2>
+        <img src="image/foundation.jpg"
+     alt="استفاده از فانداسیون"
+     style="width:100%;border-radius:12px;margin:20px 0;">
+        <h3>انتخاب رنگ درست</h3>
+        <p>
+            مهم‌ترین چیز انتخاب رنگ مناسب است. رنگ فانداسیون باید <mark>با پوست گردنتان</mark>
+            یکی باشد، نه صورت. برای تست، یک خط از فک به گردن بکشید — اگر محو شد، رنگ درست است.
+        </p>
+        <p>
+            اسفنج مرطوب برای پوشش طبیعی‌تر، برس برای پوشش بیشتر. روی فانداسیون را با
+            <strong>پودر تثبیت‌کننده</strong> ست کنید.
+        </p>
+
+        <h2>مرحله دوم — کانتورینگ ملایم</h2>
+        <p>
+            برای روزمره، یک رنگ یک تا دو شماده تیره‌تر را زیر <ins>استخوان گونه</ins>،
+            کنار بینی و خط فک بکشید. با برس بلند، ملایم blending کنید.
+        </p>
+
+        <h2>مرحله سوم — رنگ گونه (بلاشر)</h2>
+        <p>
+            لبخند بزنید و بلاشر را روی برجستگی گونه با حرکت رو به بالا بکشید.
+            <strong>کمتر بهتر است</strong> — همیشه می‌توانید اضافه کنید.
+        </p>
+
+        <div class="tip-box">
+            <strong><svg width="16" height="16"><use href="#ic-bulb"/></svg> ترفند ماندگاری رویا بیوتی:</strong>
+            بعد از هر مرحله اسپری تثبیت‌کننده آرایش بزنید. در پایان هم یک لایه دیگر.
+            این کار ماندگاری آرایش را تا <sup>۱۲</sup> ساعت افزایش می‌دهد!
+        </div>
+
+        <h2>مرحله چهارم — چشم‌ها</h2>
+        <img src="image/eye-makeup.jpg"
+     alt="آرایش چشم"
+     style="width:100%;border-radius:12px;margin:20px 0;">
+        <p>برای آرایش روزمره، یک رنگ بژ یا قهوه‌ای ملایم روی پلک بالا بزنید. رنگ تیره‌تر را در گوشه خارجی V شکل بکشید.</p>
+        <p>
+            <em>خط چشم مدادی قهوه‌ای</em> برای روز بهتر از مشکی است — ملایم‌تر و طبیعی‌تر است.
+            ریمل را از ریشه مژه با حرکت <del>مستقیم</del> <ins>زیگزاگ</ins> بزنید.
+        </p>
+
+        <h2>راهنمای انتخاب رنگ رژ لب</h2>
+        <img src="image/lipstick-colors.jpg"
+     alt="رنگ های مختلف رژ لب"
+     style="width:100%;border-radius:12px;margin:20px 0;">
+        <table>
+            <caption><strong>رنگ رژ لب بر اساس رنگ پوست</strong></caption>
+            <thead>
+                <tr><th>رنگ پوست</th><th>رنگ‌های مناسب</th><th>از چه پرهیز کنید</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>روشن (Fair)</td><td>صورتی ملایم، هلویی، برری</td><td>قهوه‌ای تیره، بنفش</td></tr>
+                <tr><td>متوسط (Medium)</td><td>رز، موو، قرمز کلاسیک</td><td>رنگ‌های خیلی روشن بیج</td></tr>
+                <tr><td>گندمی (Olive)</td><td>برری، قهوه‌ای گرم، رز قدیمی</td><td>رنگ‌های سرد صورتی</td></tr>
+                <tr><td>تیره (Dark)</td><td>قرمز تند، برگاندی، مرجانی</td><td>رنگ‌های خیلی روشن</td></tr>
+            </tbody>
+        </table>
+
+        <h2>هایلایت — لمس آخر</h2>
+        <img src="image/highlighter.jpg"
+     alt="هایلایت صورت"
+     style="width:100%;border-radius:12px;margin:20px 0;">
+        <p>
+            هایلایت را روی <strong>بالای استخوان گونه</strong>، نوک بینی، کنج داخلی چشم و
+            میانه لب بالا بزنید. برای روزمره، هایلایت‌های <em>ساتن</em> (شین کم) انتخاب کنید.
+        </p>
+        <ol>
+            <li>با برس فن هایلایت را روی برجستگی گونه بگذارید</li>
+            <li>یک خط نازک کنج چشم‌ها</li>
+            <li>یک نقطه نوک بینی</li>
+            <li>لمس ملایمی روی میانه لب بالا</li>
+        </ol>
+
+        <p style="margin-top:22px;">آرایش نیاز به تمرین دارد. مهم‌ترین چیز این است که آرایش باید <strong>اعتمادبه‌نفس</strong> شما را بالا ببرد.</p>
+
+        <a href="index.html" class="back-btn"><svg width="16" height="16"><use href="#ic-arrow-l"/></svg> بازگشت به لیست مقالات</a>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-top">
+        <div class="footer-col"><h4>رویا بیوتی</h4><p>مجله تخصصی زیبایی و آرایش برای زنان ایرانی</p></div>
+        <div class="footer-col">
+            <h4>دسترسی سریع</h4>
+            <ul>
+                <li><a href="index.html"><svg width="14" height="14"><use href="#ic-home"/></svg> خانه</a></li>
+                <li><a href="skincare.html"><svg width="14" height="14"><use href="#ic-spa"/></svg> مراقبت پوست</a></li>
+                <li><a href="makeup.html"><svg width="14" height="14"><use href="#ic-brush"/></svg> آرایش</a></li>
+                <li><a href="haircare.html"><svg width="14" height="14"><use href="#ic-scissors"/></svg> مراقبت مو</a></li>
+                <li><a href="natural.html"><svg width="14" height="14"><use href="#ic-leaf"/></svg> زیبایی طبیعی</a></li>
+                <li><a href="about.html"><svg width="14" height="14"><use href="#ic-info"/></svg> درباره ما</a></li>
+            </ul>
+        </div>
+        <div class="footer-col"><h4>تماس با ما</h4><ul><li><a href="#"><svg width="14" height="14"><use href="#ic-mail"/></svg> royabeauty@email.com</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>&copy; ۱۴۰۳ رویا بیوتی — تمامی حقوق محفوظ است</p></div>
+</footer>
+<script src="js/script.js"></script>
+</body>
+</html>

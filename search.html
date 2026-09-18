@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نتایج جستجو | رویا بیوتی</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        #readingBar{position:fixed;top:0;right:0;height:4px;width:0;background:linear-gradient(to left,var(--primary),var(--accent));z-index:9999;}
+        #btnTop{display:none;position:fixed;bottom:28px;left:28px;background:linear-gradient(135deg,var(--primary),var(--primary-mid));color:white;border:none;border-radius:50%;width:48px;height:48px;cursor:pointer;box-shadow:0 4px 16px rgba(107,30,60,.35);z-index:999;align-items:center;justify-content:center;}
+        #btnTop:hover{transform:scale(1.1);}
+        .highlight{background:#FFF3B0;padding:1px 2px;border-radius:3px;font-weight:600;color:var(--primary);}
+        .no-result-inline,.found-inline{padding:6px 12px;border-radius:8px;font-size:13.5px;display:inline-block;margin-bottom:10px;}
+        .no-result-inline{background:#FFF0F5;color:var(--primary);}
+        .found-inline{background:#F0FFF4;color:#2E7D4F;}
+    </style>
+</head>
+<body>
+<div id="readingBar"></div>
+<button id="btnTop" onclick="scrollToTop()" title="برگشت به بالا">
+    <svg width="20" height="20"><use href="#ic-chevron-l" style="transform:rotate(90deg);transform-origin:center;display:block;"/></svg>
+</button>
+
+<header>
+    <div class="header-top">
+        <a href="index.html" class="logo-area">
+             <img src="image/logo.png" alt="رویا بیوتی" class="logo-img">
+           
+            <div class="logo-text-wrap">
+                <h1>رویا بیوتی</h1>
+                <span>مجله تخصصی زیبایی و آرایش</span>
+            </div>
+        </a>
+        <form class="search-form" onsubmit="submitSearch(event)">
+            <input type="text" id="headerSearchInput" name="q" placeholder="جستجو در مقالات...">
+            <button type="submit">
+                <svg width="17" height="17"><use href="#ic-search"/></svg>
+            </button>
+        </form>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="index.html"><svg width="15" height="15"><use href="#ic-home"/></svg> خانه</a></li>
+            <li><a href="skincare.html"><svg width="15" height="15"><use href="#ic-spa"/></svg> مراقبت پوست</a></li>
+            <li><a href="makeup.html"><svg width="15" height="15"><use href="#ic-brush"/></svg> آرایش</a></li>
+            <li><a href="haircare.html"><svg width="15" height="15"><use href="#ic-scissors"/></svg> مراقبت مو</a></li>
+            <li><a href="natural.html"><svg width="15" height="15"><use href="#ic-leaf"/></svg> زیبایی طبیعی</a></li>
+            <li><a href="about.html"><svg width="15" height="15"><use href="#ic-info"/></svg> درباره ما</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="search-page">
+    <h2 class="section-title" style="margin-top:0;text-align:right;">
+        <svg width="22" height="22" style="vertical-align:middle;margin-left:8px;color:var(--primary);"><use href="#ic-search"/></svg>
+        نتایج جستجو
+    </h2>
+
+    <form class="search-page-form" onsubmit="submitSearch(event)">
+        <input type="text" id="pageSearchInput" placeholder="عبارت جدیدی جستجو کنید...">
+        <button type="submit">
+            <svg width="16" height="16"><use href="#ic-search"/></svg>
+            جستجو
+        </button>
+    </form>
+
+    <div id="searchStatus" style="margin-bottom:18px;font-size:14px;color:var(--text-light);"></div>
+    <div id="searchResults"></div>
+</div>
+
+<footer>
+    <div class="footer-top">
+        <div class="footer-col">
+            <h4>رویا بیوتی</h4>
+            <p>مجله تخصصی زیبایی و آرایش. ما بهترین مقالات آموزشی را برای شما آماده می‌کنیم.</p>
+        </div>
+        <div class="footer-col">
+            <h4>دسترسی سریع</h4>
+            <ul>
+                <li><a href="index.html"><svg width="14" height="14"><use href="#ic-home"/></svg> خانه</a></li>
+                <li><a href="skincare.html"><svg width="14" height="14"><use href="#ic-spa"/></svg> مراقبت پوست</a></li>
+                <li><a href="makeup.html"><svg width="14" height="14"><use href="#ic-brush"/></svg> آرایش</a></li>
+                <li><a href="haircare.html"><svg width="14" height="14"><use href="#ic-scissors"/></svg> مراقبت مو</a></li>
+                <li><a href="natural.html"><svg width="14" height="14"><use href="#ic-leaf"/></svg> زیبایی طبیعی</a></li>
+                <li><a href="about.html"><svg width="14" height="14"><use href="#ic-info"/></svg> درباره ما</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>تماس با ما</h4>
+            <ul>
+                <li><a href="#"><svg width="14" height="14"><use href="#ic-mail"/></svg> royabeauty@email.com</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; ۱۴۰۳ رویا بیوتی — تمامی حقوق محفوظ است</p>
+    </div>
+</footer>
+
+<script src="js/script.js"></script>
+<script>
+/* ===== پایگاه داده مقالات برای جستجو ===== */
+var ARTICLES = [
+    {
+        title: 'روتین کامل مراقبت از پوست در صبح و شب',
+        url: 'skincare.html',
+        category: 'مراقبت از پوست',
+        img: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=160&h=110&q=80',
+        excerpt: 'یاد بگیرید چطور با یک روتین ساده اما موثر، پوستی درخشان و شفاف داشته باشید. از پاک‌سازی تا کرم ضدآفتاب.',
+        keywords: 'پوست روتین صبح شب مراقبت کرم سرم تونر ضدآفتاب ویتامین ث رتینول نیاسینامید درخشان شفاف'
+    },
+    {
+        title: 'آرایش طبیعی و بدون نقص برای هر روز',
+        url: 'makeup.html',
+        category: 'آرایش',
+        img: 'https://images.unsplash.com/photo-1522335789-8b0f9f80d3fa?auto=format&fit=crop&w=160&h=110&q=80',
+        excerpt: 'تکنیک‌های حرفه‌ای برای داشتن آرایشی شفاف که تمام روز ماندگار باشد. فانداسیون، کانتور، چشم و لب.',
+        keywords: 'آرایش فانداسیون رژ لب سایه خط چشم ریمل پرایمر هایلایت بلاشر کانتور ماندگاری'
+    },
+    {
+        title: 'راز داشتن موهایی پرپشت و براق',
+        url: 'haircare.html',
+        category: 'مراقبت از مو',
+        img: 'https://images.unsplash.com/photo-1522337360429-a983d79fa0b7?auto=format&fit=crop&w=160&h=110&q=80',
+        excerpt: 'با روش‌های ساده خانگی موهایتان را تقویت کنید و از ریزش مو جلوگیری کنید. روغن، ماسک و تغذیه.',
+        keywords: 'مو ریزش شامپو روغن ماساژ نارگیل کرچک آرگان آووکادو موز بیوتین پرپشت براق تغذیه'
+    },
+    {
+        title: 'ماسک‌های خانگی با مواد طبیعی',
+        url: 'natural.html',
+        category: 'زیبایی طبیعی',
+        img: 'https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=160&h=110&q=80',
+        excerpt: 'بهترین ماسک‌های طبیعی که می‌توانید با مواد داخل یخچال‌تان تهیه کنید. عسل، آلوئه‌ورا، آووکادو.',
+        keywords: 'ماسک طبیعی عسل آلوئه ورا آووکادو توت فرنگی خاک رس ماست روشن کنندگی لک منافذ جوش'
+    },
+    {
+        title: 'محافظت از پوست در برابر آفتاب تابستان',
+        url: 'skincare.html',
+        category: 'مراقبت از پوست',
+        img: 'https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=160&h=110&q=80',
+        excerpt: 'کرم ضدآفتاب مناسب را بشناسید و پوستتان را از آسیب اشعه UV محافظت کنید.',
+        keywords: 'ضد آفتاب SPF اشعه UV تابستان محافظت پوست آسیب آفتاب سوختگی'
+    },
+    {
+        title: 'انتخاب رنگ رژ لب مناسب برای رنگ پوست',
+        url: 'makeup.html',
+        category: 'آرایش',
+        img: 'https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?auto=format&fit=crop&w=160&h=110&q=80',
+        excerpt: 'راهنمای کامل انتخاب رنگ رژ لب بر اساس رنگ پوست و مناسبت‌های مختلف.',
+        keywords: 'رژ لب رنگ پوست روشن تیره گندمی برری قرمز صورتی موو هلویی'
+    },
+    {
+        title: 'درباره رویا بیوتی و تیم ما',
+        url: 'about.html',
+        category: 'درباره ما',
+        img: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=160&h=110&q=80',
+        excerpt: 'آشنایی با تیم متخصص رویا بیوتی، مأموریت ما و ارزش‌هایی که پایه کارمان است.',
+        keywords: 'درباره ما تیم متخصص رویا بیوتی مجله زیبایی تماس همکاری'
+    }
+];
+
+/* ===== جستجو در پایگاه داده ===== */
+function doSearch(q) {
+    var keyword = q.trim().toLowerCase();
+    var resultsEl = document.getElementById('searchResults');
+    var statusEl  = document.getElementById('searchStatus');
+
+    if (!keyword) {
+        statusEl.innerText  = 'لطفاً عبارتی برای جستجو وارد کنید.';
+        resultsEl.innerHTML = '';
+        return;
+    }
+
+    var matches = [];
+    for (var i = 0; i < ARTICLES.length; i++) {
+        var art   = ARTICLES[i];
+        var haystack = (art.title + ' ' + art.category + ' ' + art.excerpt + ' ' + art.keywords).toLowerCase();
+        if (haystack.indexOf(keyword) !== -1) {
+            matches.push(art);
+        }
+    }
+
+    statusEl.innerHTML = matches.length === 0
+        ? 'نتیجه‌ای برای «<strong>' + q + '</strong>» پیدا نشد.'
+        : '<strong>' + matches.length + '</strong> نتیجه برای «<strong>' + q + '</strong>»';
+
+    if (matches.length === 0) {
+        resultsEl.innerHTML = '<div class="no-results">' +
+            '<svg width="48" height="48"><use href="#ic-search"/></svg>' +
+            '<p>جستجوی دیگری امتحان کنید یا از منوی بالا دسته‌بندی مورد نظر را انتخاب کنید.</p>' +
+            '</div>';
+        return;
+    }
+
+    var html = '';
+    for (var j = 0; j < matches.length; j++) {
+        var a = matches[j];
+        /* هایلایت عبارت جستجو در عنوان */
+        var re = new RegExp('(' + q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+        var hTitle   = a.title.replace(re, '<mark class="highlight">$1</mark>');
+        var hExcerpt = a.excerpt.replace(re, '<mark class="highlight">$1</mark>');
+
+        html += '<a href="' + a.url + '" class="search-result-item">' +
+            '<img class="search-result-img" src="' + a.img + '" alt="' + a.title + '" ' +
+            'onerror="this.style.background=\'linear-gradient(135deg,#EDCFDA,#C4607E)\';" loading="lazy">' +
+            '<div class="search-result-body">' +
+            '<h3>' + hTitle + '</h3>' +
+            '<p>' + hExcerpt + '</p>' +
+            '<span class="cat-tag">' + a.category + '</span>' +
+            '</div>' +
+            '<svg width="20" height="20" style="margin-right:auto;flex-shrink:0;color:var(--border);"><use href="#ic-chevron-l"/></svg>' +
+            '</a>';
+    }
+    resultsEl.innerHTML = html;
+}
+
+/* ===== خواندن پارامتر URL ===== */
+window.addEventListener('load', function () {
+    var params   = new URLSearchParams(window.location.search);
+    var q        = params.get('q') || '';
+    var inputEl  = document.getElementById('pageSearchInput');
+    var headerEl = document.getElementById('headerSearchInput');
+    if (inputEl)  inputEl.value  = q;
+    if (headerEl) headerEl.value = q;
+    if (q) doSearch(q);
+});
+
+/* ===== جستجو از فرم داخل صفحه ===== */
+document.querySelector('.search-page-form').addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    var q = document.getElementById('pageSearchInput').value.trim();
+    if (q) {
+        history.replaceState(null, '', '?q=' + encodeURIComponent(q));
+        doSearch(q);
+    }
+});
+</script>
+</body>
+</html>

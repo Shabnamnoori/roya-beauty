@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ماسک‌های خانگی با مواد طبیعی - رویا بیوتی">
+    <title>زیبایی طبیعی | رویا بیوتی</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        #readingBar{position:fixed;top:0;right:0;height:4px;width:0;background:linear-gradient(to left,var(--primary),var(--accent));z-index:9999;}
+        #btnTop{display:none;position:fixed;bottom:28px;left:28px;background:linear-gradient(135deg,var(--primary),var(--primary-mid));color:white;border:none;border-radius:50%;width:48px;height:48px;cursor:pointer;box-shadow:0 4px 16px rgba(107,30,60,.35);z-index:999;align-items:center;justify-content:center;}
+        #btnTop:hover{transform:scale(1.1);}
+    </style>
+</head>
+<body>
+<div id="readingBar"></div>
+<button id="btnTop" onclick="scrollToTop()" title="برگشت به بالا">
+    <svg width="20" height="20"><use href="#ic-arrow-l" style="transform:rotate(90deg);transform-box:fill-box;transform-origin:center;display:block;"/></svg>
+</button>
+
+<header>
+    <div class="header-top">
+        <a href="index.html" class="logo-area">
+             <img src="image/logo.png" alt="رویا بیوتی" class="logo-img">
+           
+            <div class="logo-text-wrap"><h1>رویا بیوتی</h1><span>مجله تخصصی زیبایی و آرایش</span></div>
+        </a>
+        <form class="search-form" onsubmit="submitSearch(event)">
+            <input type="text" id="headerSearchInput" name="q" placeholder="جستجو در مقالات...">
+            <button type="submit"><svg width="17" height="17"><use href="#ic-search"/></svg></button>
+        </form>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="index.html"><svg width="15" height="15"><use href="#ic-home"/></svg> خانه</a></li>
+            <li><a href="skincare.html"><svg width="15" height="15"><use href="#ic-spa"/></svg> مراقبت پوست</a></li>
+            <li><a href="makeup.html"><svg width="15" height="15"><use href="#ic-brush"/></svg> آرایش</a></li>
+            <li><a href="haircare.html"><svg width="15" height="15"><use href="#ic-scissors"/></svg> مراقبت مو</a></li>
+            <li><a href="natural.html" class="active"><svg width="15" height="15"><use href="#ic-leaf"/></svg> زیبایی طبیعی</a></li>
+            <li><a href="about.html"><svg width="15" height="15"><use href="#ic-info"/></svg> درباره ما</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="article-page">
+    <a href="index.html" class="back-btn"><svg width="16" height="16"><use href="#ic-arrow-l"/></svg> بازگشت به خانه</a>
+
+    <div class="article-header">
+        <span class="category-badge"><svg width="12" height="12"><use href="#ic-leaf"/></svg> زیبایی طبیعی</span>
+        <h1>ماسک‌های خانگی با مواد طبیعی که واقعاً جواب می‌دهند</h1>
+        <div class="article-meta">
+            <span><svg width="13" height="13"><use href="#ic-users"/></svg> فاطمه موسوی</span>
+            <span><svg width="13" height="13"><use href="#ic-calendar"/></svg> ۱ خرداد ۱۴۰۳</span>
+            <span><svg width="13" height="13"><use href="#ic-clock"/></svg> ۴ دقیقه مطالعه</span>
+            <span><svg width="13" height="13"><use href="#ic-eye"/></svg> ۲,۰۵۰ بازدید</span>
+        </div>
+    </div>
+<img class="article-cover"
+     src="image/natural-cover.jpg"
+     alt="مواد طبیعی برای مراقبت از پوست">
+
+    <div class="article-content">
+        <p>
+            در دنیایی که پر از محصولات گران‌قیمت است، طبیعت همچنان بهترین داروخانه برای پوست و مو است.
+            <strong>ماسک‌های خانگی</strong> نه تنها ارزان و در دسترس هستند، بلکه اغلب
+            بهتر از محصولات شیمیایی عمل می‌کنند.
+        </p>
+
+        <blockquote>
+            "طبیعت کامل‌ترین آزمایشگاه زیبایی است. هر آنچه پوست نیاز دارد، زمین تأمین کرده."
+        </blockquote>
+
+        <h2>ماسک عسل و آلوئه‌ورا — برای پوست خشک و حساس</h2>
+        <p>
+            عسل یک <abbr title="Humectant">هومکتانت</abbr> طبیعی است — رطوبت را از هوا به پوست جذب می‌کند.
+            آلوئه‌ورا <mark>التهاب را کاهش</mark> می‌دهد و پوست را آرام می‌کند.
+        </p>
+
+        <h3>مواد لازم:</h3>
+        <ul>
+            <li>۲ قاشق غذاخوری ژل آلوئه‌ورا (مستقیم از برگ گیاه)</li>
+            <li>۱ قاشق غذاخوری عسل طبیعی</li>
+            <li>چند قطره روغن رز (اختیاری)</li>
+        </ul>
+
+        <h3>روش استفاده:</h3>
+        <ol>
+            <li>مواد را مخلوط کنید تا یکدست شود</li>
+            <li>روی پوست تمیز با ماساژ دایره‌ای ملایم بمالید</li>
+            <li>۱۵ تا ۲۰ دقیقه صبر کنید</li>
+            <li>با آب ولرم بشویید</li>
+            <li>مرطوب‌کننده بزنید</li>
+        </ol>
+
+        <div class="tip-box">
+            <strong><svg width="16" height="16"><use href="#ic-bulb"/></svg> نتیجه مورد انتظار:</strong>
+            بعد از اولین استفاده پوست نرم‌تر. بعد از ۴ هفته استفاده منظم (۲ بار در هفته)
+            پوست درخشان و کاهش خشکی قابل توجه.
+        </div>
+
+        <h2>راهنمای ماسک بر اساس مشکل پوستی</h2>
+        <table>
+            <caption><strong>ماسک مناسب برای هر مشکل پوستی</strong></caption>
+            <thead>
+                <tr><th>مشکل پوستی</th><th>ماسک مناسب</th><th>دفعات</th><th>مدت نتیجه‌گیری</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>خشکی شدید</td><td>عسل + آلوئه‌ورا + روغن آرگان</td><td>۳ بار در هفته</td><td>۱ هفته</td></tr>
+                <tr><td>لک و تیرگی</td><td>توت‌فرنگی + ماست + لیمو</td><td>۲ بار در هفته</td><td>۴ تا ۶ هفته</td></tr>
+                <tr><td>پوست چرب و جوش</td><td>خاک رس + چای سبز</td><td>۲ بار در هفته</td><td>۲ تا ۳ هفته</td></tr>
+                <tr><td>پیری زودرس</td><td>آووکادو + عسل + ویتامین E</td><td>۲ بار در هفته</td><td>۶ تا ۸ هفته</td></tr>
+                <tr><td>منافذ باز</td><td>سفیده تخم‌مرغ + لیمو</td><td>هفته‌ای یکبار</td><td>۲ تا ۴ هفته</td></tr>
+            </tbody>
+        </table>
+
+        <h2>ماسک آووکادو — ضدپیری و تغذیه‌ای</h2>
+        <p>
+            آووکادو سرشار از چربی‌های سالم، ویتامین E و آنتی‌اکسیدان‌هاست.
+            <strong>عمیق‌ترین مرطوب‌سازی</strong> طبیعی را به پوست می‌دهد.
+        </p>
+        <ul>
+            <li>نصف آووکادو رسیده را له کنید</li>
+            <li>۱ قاشق عسل اضافه کنید</li>
+            <li>چند قطره روغن ویتامین E (از کپسول دارویی)</li>
+            <li>۲۰ دقیقه بگذارید</li>
+        </ul>
+
+        <h2>ترکیباتی که نباید با هم مخلوط کنید</h2>
+        <ul>
+            <li><del>لیمو + آفتاب</del> — بعد از ماسک لیمو ۲۴ ساعت از آفتاب دور بمانید</li>
+            <li><del>جوش‌شیرین + لیمو روی صورت</del> — pH خیلی متفاوت، آسیب‌زاست</li>
+            <li><del>دارچین خالص روی صورت</del> — می‌سوزاند! همیشه رقیق کنید</li>
+        </ul>
+
+        <div class="tip-box">
+            <strong><svg width="16" height="16"><use href="#ic-bulb"/></svg> یادآوری مهم — Patch Test:</strong>
+            قبل از هر ماسک جدید، مقداری از آن را روی مچ دست بمالید و ۲۴ ساعت صبر کنید.
+            اگر قرمزی یا خارش نداشت، می‌توانید روی صورت استفاده کنید.
+        </div>
+
+        <p style="margin-top:22px;">زیبایی طبیعی یک سبک زندگی است. با مواد ساده‌ای که در خانه دارید می‌توانید پوستی سالم‌تر داشته باشید. فقط صبور باشید و <strong>منظم</strong>!</p>
+
+        <a href="index.html" class="back-btn"><svg width="16" height="16"><use href="#ic-arrow-l"/></svg> بازگشت به لیست مقالات</a>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-top">
+        <div class="footer-col"><h4>رویا بیوتی</h4><p>مجله تخصصی زیبایی و آرایش برای زنان ایرانی</p></div>
+        <div class="footer-col">
+            <h4>دسترسی سریع</h4>
+            <ul>
+                <li><a href="index.html"><svg width="14" height="14"><use href="#ic-home"/></svg> خانه</a></li>
+                <li><a href="skincare.html"><svg width="14" height="14"><use href="#ic-spa"/></svg> مراقبت پوست</a></li>
+                <li><a href="makeup.html"><svg width="14" height="14"><use href="#ic-brush"/></svg> آرایش</a></li>
+                <li><a href="haircare.html"><svg width="14" height="14"><use href="#ic-scissors"/></svg> مراقبت مو</a></li>
+                <li><a href="natural.html"><svg width="14" height="14"><use href="#ic-leaf"/></svg> زیبایی طبیعی</a></li>
+                <li><a href="about.html"><svg width="14" height="14"><use href="#ic-info"/></svg> درباره ما</a></li>
+            </ul>
+        </div>
+        <div class="footer-col"><h4>تماس با ما</h4><ul><li><a href="#"><svg width="14" height="14"><use href="#ic-mail"/></svg> royabeauty@email.com</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>&copy; ۱۴۰۳ رویا بیوتی — تمامی حقوق محفوظ است</p></div>
+</footer>
+<script src="js/script.js"></script>
+</body>
+</html>
